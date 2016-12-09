@@ -1,6 +1,6 @@
 /**
 ** Author: Vijay J.
-** URL: https://www.hackerearth.com/@vijayjadhav008	
+** URL: https://www.hackerearth.com/@vijayjadhav008
 ** Problem: 
 **/
 
@@ -26,6 +26,7 @@ using namespace std;
 #define LOOP(i,n) for(int (i)=0;(i)<(int)(n);++(i))
 #define LOOPE(i,l,u) for(int (i)=(int)(l);(i)<=(int)(u);++(i))
 #define LOOPL(i,l,u) for(int (i)=(int)(l);(i)<(int)(u);++(i))
+#define LOOPR(i,l,u) for(int (i)=(int)(l);(i)>=(int)(u);--(i))
 #define ITERATE(it,object) for(auto (it)=(object).begin();(it)!=(object).end();++(it))
 #define ALL(object) (object).begin(),(object).end()
 #define PB(item) push_back(item)
