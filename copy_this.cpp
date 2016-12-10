@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 /**
 ** Problem: 
 **/
 
+=======
+>>>>>>> f0c5e7ca385ebfbf10b4e38ed3d938b7181ba7c2
 #include <string>
 #include <vector>
 #include <algorithm>
