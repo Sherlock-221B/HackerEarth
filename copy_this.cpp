@@ -1,9 +1,3 @@
-/**
-** Author: Vijay J.
-** URL: https://www.hackerearth.com/@vijayjadhav008
-** Problem: 
-**/
-
 #include <string>
 #include <vector>
 #include <algorithm>
