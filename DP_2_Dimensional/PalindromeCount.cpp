@@ -1,5 +1,5 @@
 /**
-** Problem: 
+** Problem: https://www.hackerearth.com/practice/algorithms/dynamic-programming/2-dimensional/practice-problems/algorithm/palindrome-count-1/
 **/
 
 #include <string>
@@ -49,16 +49,25 @@ template<class T1,class T2,class T3> void DEBUG(T1 e1, T2 e2, T3 e3){    cout <<
 template<class T1,class T2,class T3,class T4> void DEBUG(T1 e1, T2 e2, T3 e3, T4 e4){    cout << e1 << ", " << e2 << ", " << e3 << ", " << e4 << endl;}
 
 
-// class cmp{
-//     public:
-//     bool operator() (const object &a,const object &b){
-//         return a<b;
-//     }
-// };
-
-
 int main(){
+    string s;
+    cin>>s;
+    int n=s.length();
+    vector<vector<bool> > v(n, vector<bool>(n,true));
 
+    int i=0,j=1,m=(n*(n-1))/2,diff=1;
+    int count=n;
+    while(m--){
+        if(v[i+1][j-1]==false){
+            v[i][j]=false;
+        }else{
+            if(s[i]==s[j]) count++;
+            else v[i][j]=false;
+        }
 
+        if(j==n-1) i=0, j=++diff;
+        else i++,j++;
+    }
+    cout<<count<<endl;
     return 0;
 }
