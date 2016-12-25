@@ -1,5 +1,5 @@
 /**
-** Problem:
+** Problem: https://www.hackerearth.com/december-circuits-16/approximate/christmas-dishes-2/
 **/
 #include <string>
 #include <vector>
@@ -40,16 +40,15 @@ template<class T1> void DEBUG(T1 e1){    cout << e1 << endl;}
 template<class T1,class T2> void DEBUG(T1 e1, T2 e2){    cout << e1 << ", " << e2 << endl;}
 template<class T1,class T2,class T3> void DEBUG(T1 e1, T2 e2, T3 e3){    cout << e1 << ", " << e2 << ", " << e3 << endl;}
 
-// class cmp{
-//     public:
-//     bool operator() (const object &a,const object &b){
-//         return a<b;
-//     }
-// };
-
 
 int main(){
 
-
+    int N,K;
+    cin>>N>>K;
+    if(N==2 && K==3) cout<<"ab";
+    else if(N==K) {
+        string s(N,'a');
+        cout<<s;
+    }else cout<<"No";
     return 0;
 }

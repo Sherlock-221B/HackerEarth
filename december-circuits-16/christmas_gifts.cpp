@@ -1,5 +1,5 @@
 /**
-** Problem:
+** Problem: https://www.hackerearth.com/december-circuits-16/approximate/christmas-gifts/
 **/
 #include <string>
 #include <vector>
@@ -40,16 +40,39 @@ template<class T1> void DEBUG(T1 e1){    cout << e1 << endl;}
 template<class T1,class T2> void DEBUG(T1 e1, T2 e2){    cout << e1 << ", " << e2 << endl;}
 template<class T1,class T2,class T3> void DEBUG(T1 e1, T2 e2, T3 e3){    cout << e1 << ", " << e2 << ", " << e3 << endl;}
 
-// class cmp{
-//     public:
-//     bool operator() (const object &a,const object &b){
-//         return a<b;
-//     }
-// };
+int unvisited;
+#define RED false
+#define WHITE true
 
+void DFS(int vertex, vector<bool> &visited, vector<bool> &color,vector<list<int> > &graph ,bool current_color){
+    if(current_color==WHITE){
+        ITERATE(it,graph[vertex]){
+            if(visited[*it] && color[*it]==WHITE){
+                return;
+            }
+        }
+    }
+    visited[vertex]=true;
+    color[vertex]=current_color;
+    unvisited--;
+    ITERATE(it,graph[vertex]) if(!visited[*it]) DFS(*it,visited,color,graph,!current_color);
+}
 
 int main(){
 
-
+    
+    int N,M,u,v;
+    cin>>N>>M;
+    unvisited=N;
+    vector<list<int> > graph(M+1);
+    LOOP(i,1,M){
+        cin>>u>>v;
+        graph[u].emplace_back(v);
+        graph[v].emplace_back(u);
+    }
+    vector<bool> visited(N+1,false),color(N+1);
+    DFS(1,visited,color,graph,RED);
+    if(unvisited>0) cout<<"No";
+    else LOOP(i,1,N) if(color[i]==true) cout<<"1 "; else cout<<"0 "; 
     return 0;
 }

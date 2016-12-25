@@ -1,5 +1,5 @@
 /**
-** Problem:
+** Problem: https://www.hackerearth.com/december-circuits-16/algorithm/christmas-string/
 **/
 #include <string>
 #include <vector>
@@ -40,16 +40,29 @@ template<class T1> void DEBUG(T1 e1){    cout << e1 << endl;}
 template<class T1,class T2> void DEBUG(T1 e1, T2 e2){    cout << e1 << ", " << e2 << endl;}
 template<class T1,class T2,class T3> void DEBUG(T1 e1, T2 e2, T3 e3){    cout << e1 << ", " << e2 << ", " << e3 << endl;}
 
-// class cmp{
-//     public:
-//     bool operator() (const object &a,const object &b){
-//         return a<b;
-//     }
-// };
-
-
 int main(){
 
+    string s;
+    cin>>s;
+    int N,len=s.length(),matched=0;
+    cin>>N;
+    vector<string> vs(N);
+    LOOP(i,0,N-1) cin>>vs[i];
+    VI dissimilarity(N,0),index(N,-1),count(len,0);
 
+    LOOP(i,0,N-1){
+        LOOP(j,0,len-1){
+            if(s[j]!='*' && s[j]!=vs[i][j]){
+                dissimilarity[i]++;
+                if(dissimilarity[i]==1) index[i]=j;
+            }
+        }
+        if(dissimilarity[i]==0) matched++;
+    }
+
+    LOOP(i,0,N-1) if(dissimilarity[i]==1) count[index[i]]++;
+    int answer=0;
+    LOOP(i,0,len-1) MAX(answer,count[i]);
+    cout<<answer+matched;
     return 0;
 }

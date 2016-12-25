@@ -1,5 +1,5 @@
 /**
-** Problem:
+** Problem: https://www.hackerearth.com/december-circuits-16/approximate/christmas-divisors/
 **/
 #include <string>
 #include <vector>
@@ -40,16 +40,48 @@ template<class T1> void DEBUG(T1 e1){    cout << e1 << endl;}
 template<class T1,class T2> void DEBUG(T1 e1, T2 e2){    cout << e1 << ", " << e2 << endl;}
 template<class T1,class T2,class T3> void DEBUG(T1 e1, T2 e2, T3 e3){    cout << e1 << ", " << e2 << ", " << e3 << endl;}
 
-// class cmp{
-//     public:
-//     bool operator() (const object &a,const object &b){
-//         return a<b;
-//     }
-// };
-
+VI v;
+vector<LL> sub;
+unordered_set<LL> s;
+int N;
+void compute(int index, LL value){
+    if(index==N){
+        if(s.find(value)==s.end()){
+            sub.PB(value);
+            s.insert(value);
+        }
+        return;
+    }
+    compute(index+1, value);
+    compute(index+1, value*v[index]);
+}
 
 int main(){
-
-
+    v.clear();
+    sub.clear();
+    s.clear();
+    int k,x,y;
+    cin>>k;
+    while(k--){
+        cin>>x>>y;
+        while(y--) v.PB(x);
+    }
+    N=v.size();
+    compute(0,1);
+    int S=sub.size();
+    vector<bool> visited(S,false);
+    vector<LL> answer;
+    answer.PB(1);
+    LOOP(j,1,S){
+        LOOP(i,1,S-1){
+            if(!visited[i] && (answer.back()%sub[i]==0 || sub[i]%answer.back()==0)){
+                visited[i]=true;
+                answer.PB(sub[i]);
+                break;
+            }
+        }
+    }
+    if(answer.size()!=S) cout<<"No";
+    else for(LL i:answer) cout<<i<<" ";
     return 0;
 }
